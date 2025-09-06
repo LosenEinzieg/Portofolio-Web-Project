@@ -25,7 +25,7 @@ This project showcases my skills, projects, and contact information as a Front E
 
 ## 🌐 Live Demo
 
-[View Portfolio Live]([https://loseneinzieg.github.io/portofolio-web-project/](https://loseneinzieg.github.io/Portofolio-Web-Project/))
+[View Portfolio Live]([[https://loseneinzieg.github.io/Portofolio-Web-Project/])
 
 ## 📬 Contact
 
