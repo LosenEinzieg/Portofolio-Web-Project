@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Website</title>
+
+    <!-- Tailwind CSS  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'yellow-primary': '#FCD34D',
+                        'yellow-secondary': '#FEF3C7',
+                        'yellow-accent': '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 100%);
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        .float-animation-delayed {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .navbar-pattern {
+            background: linear-gradient(90deg, #ffffff 0%, #fef3c7 50%, #ffffff 100%);
+            background-size: 200% 100%;
+            animation: shimmer 20s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: -200% 0; }
+        }
+        @keyframes bounce-in {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.8);}
+            60% { opacity: 1; transform: translateY(10px) scale(1.05);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .animate-bounce-in {
+            animation: bounce-in 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        
+        @keyframes username-typing {
+            0% { width: 0; }
+            80% { width: 100%; }
+            100% { width: 100%; }
+        }
+        .username-typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #F59E0B;
+            animation: username-typing .1s steps(20, end), blink-caret .1s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            25% { border-color: #3a3731; }
+            50% { border-color: #F59E0B; }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Header Content  -->
+    <header class="navbar-pattern shadow-sm sticky top-0 z-50 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <svg class="absolute top-0 left-10 w-8 h-8 text-yellow-primary opacity-30" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+            </svg>
+            <svg class="absolute top-2 right-20 w-6 h-6 text-yellow-accent opacity-40" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="absolute bottom-1 right-40 w-4 h-4 text-yellow-primary opacity-50" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 15.09,8.26 22,9 17,14 18.18,21 12,17.77 5.82,21 7,14 2,9 8.91,8.26"/>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+            <!-- Logo  -->
+            <div class="logo">
+                <div class="h-12 w-12 bg-yellow-primary rounded-full flex items-center justify-center shadow-lg">
+                    <img src="assets/Logo_SDA.png" alt="Logo">
+                </div>
+            </div>
+            <!-- Desktop Navbar  -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home-page" class="text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">Home</a>
+                <a href="#about-me" class="text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">About Me</a>
+                <a href="#projects" class="text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">My Projects</a>
+                <a href="#message-me" class="text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">Message Me</a>
+            </nav>
+            <!-- Mobile Menu Button  -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navbar  -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4">
+            <a href="#home-page" class="block py-3 text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">Home</a>
+            <a href="#about-me" class="block py-3 text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">About Me</a>
+            <a href="#projects" class="block py-3 text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">My Projects</a>
+            <a href="#message-me" class="block py-3 text-gray-700 hover:text-yellow-accent transition-colors duration-300 font-medium">Message Me</a>
+        </nav>
+    </header>
+
+    <!-- Main Content  -->
+    <main>
+        <!-- Home  -->
+        <section id="home-page" class="gradient-bg min-h-screen flex items-center relative overflow-hidden scroll-mt-28">
+            <div class="absolute inset-0 pointer-events-none">
+                <svg class="absolute top-20 left-10 w-32 h-32 text-white opacity-20 float-animation" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="currentColor"/>
+                </svg>
+                <svg class="absolute top-40 right-20 w-24 h-24 text-yellow-accent opacity-30 float-animation-delayed" viewBox="0 0 100 100">
+                    <polygon points="50,10 90,90 10,90" fill="currentColor"/>
+                </svg>
+                <svg class="absolute bottom-32 left-20 w-20 h-20 text-white opacity-25 float-animation" viewBox="0 0 100 100">
+                    <rect x="20" y="20" width="60" height="60" rx="10" fill="currentColor"/>
+                </svg>
+                <svg class="absolute bottom-20 right-32 w-16 h-16 text-yellow-accent opacity-40 float-animation-delayed" viewBox="0 0 100 100">
+                    <path d="M50 10 L90 50 L50 90 L10 50 Z" fill="currentColor"/>
+                </svg>
+                <svg class="absolute top-60 left-1/4 w-8 h-8 text-white opacity-30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                </svg>
+                <svg class="absolute top-80 right-1/3 w-6 h-6 text-yellow-accent opacity-50" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="absolute bottom-60 left-1/3 w-10 h-10 text-white opacity-20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12,2 15.09,8.26 22,9 17,14 18.18,21 12,17.77 5.82,21 7,14 2,9 8.91,8.26"/>
+                </svg>
+                <svg class="hidden md:block absolute top-32 right-1/4 w-14 h-14 text-yellow-accent opacity-25 float-animation" viewBox="0 0 100 100">
+                    <path d="M20 50 L50 20 L80 50 L50 80 Z" fill="currentColor"/>
+                </svg>
+                <svg class="hidden md:block absolute bottom-40 right-10 w-12 h-12 text-white opacity-30 float-animation-delayed" viewBox="0 0 100 100">
+                    <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                    <circle cx="70" cy="30" r="8" fill="currentColor"/>
+                    <circle cx="50" cy="70" r="8" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <div class="flex flex-col items-center mb-6">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-2 text-gray-800 flex items-center gap-2 justify-center">
+                        <span class="animate-bounce text-yellow-accent text-5xl">👋</span>
+                        Hi <span id="username" class="text-yellow-accent">Guest</span>!
+                    </h1>
+                </div>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                    I’m Ade Arif an IT enthusiast who loves building apps, designing clean UIs, and exploring web development. Always curious and growing towards programming & game development.
+                </p>
+                <div class="mb-8">
+                    <input type="text" id="name-input" placeholder="Enter your name" class="px-4 py-2 rounded-lg border-2 border-yellow-accent mr-4 mb-4 md:mb-0 w-full md:w-auto">
+                    <button onclick="updateWelcome()" class="bg-yellow-accent hover:bg-yellow-600 text-white px-6 py-2 rounded-lg transition-colors duration-300 font-medium w-full md:w-auto"> Update Name </button>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-4">
+                    <span class="bg-yellow-primary px-4 py-2 rounded-full text-sm font-semibold">Front End Developer</span>
+                    <span class="bg-yellow-primary px-4 py-2 rounded-full text-sm font-semibold">UI/UX Designer</span>
+                    <span class="bg-yellow-primary px-4 py-2 rounded-full text-sm font-semibold">IT Support</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About/Profile -->
+        <section id="about-me" class="py-16 bg-white relative overflow-hidden scroll-mt-28">
+            <!-- Decorative SVG background -->
+            <svg class="absolute left-5 top-50 w-64 h-64 opacity-10 text-yellow-accent pointer-events-none" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="100" fill="currentColor"/>
+            </svg>
+            <svg class="absolute right-5 bottom-5 w-64 h-64 opacity-10 text-yellow-primary pointer-events-none" viewBox="0 0 200 200">
+                <rect x="0" y="0" width="200" height="200" rx="60" fill="currentColor"/>
+            </svg>
+            <div class="container mx-auto px-4 flex flex-col items-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">About Me</h2>
+                <div class="relative bg-yellow-secondary rounded-3xl shadow-xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 max-w-4xl w-full">
+                    <div class="flex-shrink-0">
+                        <img src="assets/Profile.jpg" alt="Ade Arif Ramadhan" class="w-40 h-40 rounded-full border-4 border-yellow-accent shadow-lg object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-6 h-6 text-yellow-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M12 11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span class="text-xl font-semibold text-gray-800">Ade Arif Ramadhan</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <span class="inline-flex items-center bg-yellow-primary text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 8l2 2-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 8l-2 2 2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Front End Developer
+                            </span>
+                            <span class="inline-flex items-center bg-yellow-primary text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <rect x="14" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <rect x="14" y="14" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <rect x="3" y="14" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M7 7l10 10" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                UI/UX Designer
+                            </span>
+                            <span class="inline-flex items-center bg-yellow-primary text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 15v-2a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg> 
+                                IT Support
+                            </span>
+                        </div>
+                        <blockquote class="italic text-yellow-accent text-lg mb-4 border-l-4 border-yellow-accent pl-4">
+                            “Always curious about new things, my next big goal is to deepen my journey into Programming and AI technology.”
+                        </blockquote>
+                        <ul class="space-y-1 text-gray-700 mb-4 font-mono">
+                            <li class="flex">
+                                <span class="w-20 font-bold">Email</span>
+                                <span class="w-4 text-right">:</span>
+                                <a href="mailto:arif.ade727@gmail.com" class="text-yellow-accent underline flex-1">arif.ade727@gmail.com</a>
+                            </li>
+                            <li class="flex">
+                                <span class="w-20 font-bold">Phone</span>
+                                <span class="w-4 text-right">:</span>
+                                <a href="tel:+6281283035608" class="text-yellow-accent underline flex-1">+6281283035608</a>
+                            </li>
+                            <li class="flex">
+                                <span class="w-20 font-bold">Location</span>
+                                <span class="w-4 text-right">:</span>
+                                <span class="flex-1">Indonesia</span>
+                            </li>
+                            <li class="flex">
+                                <span class="w-20 font-bold">LinkedIn</span>
+                                <span class="w-4 text-right">:</span>
+                                <a href="https://www.linkedin.com/in/ade-arif-ramadhan" class="text-yellow-accent underline flex-1" target="_blank">linkedin.com/in/adeariframadhan</a>
+                            </li>
+                            <li class="flex">
+                                <span class="w-20 font-bold">GitHub</span>
+                                <span class="w-4 text-right">:</span>
+                                <a href="https://github.com/LosenEinzieg" class="text-yellow-accent underline flex-1" target="_blank">github.com/LosenEinzieg</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="py-16 bg-yellow-secondary relative overflow-hidden scroll-mt-28">
+            <!-- Decorative SVGs for Projects Section -->
+            <svg class="absolute top-4 left-1/4 w-24 h-24 text-yellow-accent opacity-15 pointer-events-none" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="currentColor"/>
+            </svg>
+            <svg class="absolute bottom-10 right-1/3 w-20 h-20 text-yellow-primary opacity-20 pointer-events-none" viewBox="0 0 100 100">
+                <rect x="20" y="20" width="60" height="60" rx="10" fill="currentColor"/>
+            </svg>
+            <svg class="absolute top-1/2 left-10 w-12 h-12 text-yellow-accent opacity-10 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 15.09,8.26 22,9 17,14 18.18,21 12,17.77 5.82,21 7,14 2,9 8.91,8.26"/>
+            </svg>
+            <svg class="absolute bottom-1/4 right-10 w-16 h-16 text-yellow-accent opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                <path d="M20 50 L50 20 L80 50 L50 80 Z" fill="currentColor"/>
+            </svg>
+            <svg class="absolute top-1/3 right-1/4 w-10 h-10 text-yellow-primary opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                <circle cx="70" cy="30" r="8" fill="currentColor"/>
+                <circle cx="50" cy="70" r="8" fill="currentColor"/>
+            </svg>
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">My Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <a href="https://loseneinzieg.github.io/DOM-Project-Demon-Slayer-To-Do-List-Web-App/" target="_blank" class="group block transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 rounded-lg">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 group-hover:ring-4 group-hover:ring-yellow-accent">
+                            <img src="assets/To-Do_List.png" alt="To-Do List Web App" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2 group-hover:text-yellow-accent transition-colors duration-300">To-Do List Web App</h3>
+                                <p class="text-gray-600 mb-4">Simple and clean to-do list Demon Slayer app theme with local storage support.</p>
+                                <span class="bg-yellow-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Project 2 -->
+                    <a href="https://loseneinzieg.github.io/Netflix-Sign-In-Page/" target="_blank" class="group block transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 rounded-lg">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 group-hover:ring-4 group-hover:ring-yellow-accent">
+                            <img src="assets/Netflix.png" alt="Netflix Sign In Page Clone" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2 group-hover:text-yellow-accent transition-colors duration-300">Netflix Sign In Page Clone</h3>
+                                <p class="text-gray-600 mb-4">A pixel-perfect clone of Netflix's sign-in page using HTML & CSS.</p>
+                                <span class="bg-yellow-primary px-3 py-1 rounded-full text-sm">Front End</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Project 3 -->
+                    <a href="https://loseneinzieg.github.io/Image-Accordion-Page/" target="_blank" class="group block transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 rounded-lg">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 group-hover:ring-4 group-hover:ring-yellow-accent">
+                            <img src="assets/Accordion.png" alt="Image Accordion Page" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2 group-hover:text-yellow-accent transition-colors duration-300">Image Accordion Page</h3>
+                                <p class="text-gray-600 mb-4">Interactive and colorfull Image Accordion built with HTML, CSS, and JS.</p>
+                                <span class="bg-yellow-primary px-3 py-1 rounded-full text-sm">UI/UX</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- See More Projects -->
+                    <a href="https://github.com/LosenEinzieg" target="_blank" class="group block transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 rounded-lg">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 group-hover:ring-4 group-hover:ring-yellow-accent flex flex-col items-center justify-center h-full">
+                            <div class="p-6 flex flex-col items-center justify-center h-48">
+                                <h3 class="font-bold text-xl mb-2 group-hover:text-yellow-accent transition-colors duration-300">See More Projects</h3>
+                                <p class="text-gray-600 mb-4">Find more simple and fun projects on my GitHub!</p>
+                                <span class="bg-yellow-accent px-3 py-1 rounded-full text-sm text-white">GitHub</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message Me -->
+        <section id="message-me" class="py-16 bg-white relative overflow-hidden scroll-mt-28">
+            <!-- Decorative SVGs for Message Me Section (randomly placed) -->
+            <svg class="absolute top-8 right-1/4 w-28 h-28 text-yellow-accent opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="currentColor"/>
+            </svg>
+            <svg class="absolute bottom-16 left-1/3 w-20 h-20 text-yellow-primary opacity-15 pointer-events-none" viewBox="0 0 100 100">
+                <rect x="20" y="20" width="60" height="60" rx="10" fill="currentColor"/>
+            </svg>
+            <svg class="absolute top-1/2 left-10 w-10 h-10 text-yellow-accent opacity-10 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 15.09,8.26 22,9 17,14 18.18,21 12,17.77 5.82,21 7,14 2,9 8.91,8.26"/>
+            </svg>
+            <svg class="absolute bottom-1/4 right-10 w-14 h-14 text-yellow-accent opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                <path d="M20 50 L50 20 L80 50 L50 80 Z" fill="currentColor"/>
+            </svg>
+            <svg class="absolute top-1/3 left-1/4 w-8 h-8 text-yellow-primary opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                <circle cx="70" cy="30" r="8" fill="currentColor"/>
+                <circle cx="50" cy="70" r="8" fill="currentColor"/>
+            </svg>
+            <div class="container mx-auto px-4 max-w-2xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Message Me</h2>
+                <form id="contact-form" action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name *
+                        </label>
+                        <input type="text" id="contact-name" name="name" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-accent focus:outline-none transition-colors duration-300">
+                        <span id="name-error" class="text-red-500 text-sm hidden">Please enter your name</span>
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address *
+                        </label>
+                        <input type="email" id="contact-email" name="email" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-accent focus:outline-none transition-colors duration-300">
+                        <span id="email-error" class="text-red-500 text-sm hidden">Please enter a valid email</span>
+                    </div>
+                    <div>
+                        <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-2">
+                            Subject *
+                        </label>
+                        <input type="text" id="contact-subject" name="subject" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-accent focus:outline-none transition-colors duration-300">
+                        <span id="subject-error" class="text-red-500 text-sm hidden">Please enter a subject</span>
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-2">
+                            Message *
+                        </label>
+                        <textarea id="contact-message" name="message" rows="5" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-accent focus:outline-none transition-colors duration-300 resize-vertical"></textarea>
+                        <span id="message-error" class="text-red-500 text-sm hidden">Please enter your message</span>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-yellow-accent hover:bg-yellow-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">
+                        Send Message
+                    </button>
+                </form>
+                <!-- Floating Success Message -->
+                <div id="success-message" class="fixed left-1/2 top-8 transform -translate-x-1/2 z-50 hidden">
+                    <div class="flex items-center gap-3 px-6 py-4 bg-green-500 text-white rounded-xl shadow-lg animate-bounce-in">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="font-semibold">Your message has been sent successfully!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Content  -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Ade Arif Ramadhan. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Built with passion and creativity</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="mailto:arif.ade727@gmail.com" class="hover:text-yellow-accent">Email</a>
+                <a href="https://www.linkedin.com/in/ade-arif-ramadhan" target="_blank" class="hover:text-yellow-accent">LinkedIn</a>
+                <a href="https://github.com/LosenEinzieg" target="_blank" class="hover:text-yellow-accent">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
