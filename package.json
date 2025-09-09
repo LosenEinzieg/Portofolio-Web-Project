@@ -1,0 +1,25 @@
+{
+  "name": "portofolio-web-project",
+  "version": "1.0.0",
+  "description": "Welcome to my personal portfolio website!  \r This project showcases my skills, projects, and contact information as a Front End Developer, UI/UX Designer, and IT Support specialist.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LosenEinzieg/Portofolio-Web-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LosenEinzieg/Portofolio-Web-Project/issues"
+  },
+  "homepage": "https://github.com/LosenEinzieg/Portofolio-Web-Project#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },   
+  "dev": "npx tailwindcss -i ./input.css -o ./dist/output.css --watch"
+}
+
